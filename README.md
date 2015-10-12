@@ -10,9 +10,7 @@ This library requires a version of the STL for Arduino, either from http://andyb
 The following functions are curently available:
 
     void ES::clearSerial(HardwareSerial*, bool)
-
     void ES::waitForContact(HardwareSerial*, unsigned int, unsigned int)
-
     bool ES::recv(HardwareSerail*, ES::message&)
 
 ###clearSerial###
@@ -28,17 +26,20 @@ This function waits for data to appear on the specified serialport before allowi
 ###recv###
 Usage `ES::recv(HardwareSerial* _Serial, ES::message&)`
 
+recv wire format is as follows:
+    
+    Size of the data part of the message in decimal notation
+    single space (0x20) character
+    Date of the message
+    single null (0x00) character
+
 This function takes 2 arguments, the serialport to receive on, and a reference to a message struct, and returns a bool whether a valid message is available. To use it, create a persistant variable of type `ES::message` that will store the message being recieved, and call it. if it returns true, there is a vaild message available, else there is a partial message or no message available. any user code that modifies the contents of the `ES::message` struct will result in either a false positive, or a discarded valid message.
 
 **Example**
+
     ES::message serialData;
-    
     void loop() {
-    
         if (recv(&Serial, serialData)) {
-    
             //your work here
-    
         }
-    
     }
