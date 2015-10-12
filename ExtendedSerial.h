@@ -6,7 +6,6 @@
 #include <string>
 
 namespace ES {
-
     struct message{
         message() {header = true; size = 0; data.clear();};
     
@@ -17,7 +16,8 @@ namespace ES {
 
     void clearSerial(HardwareSerial*, bool = true);
     void waitForContact(HardwareSerial*, unsigned int = 250, unsigned int = 8);
-    bool recv(HardwareSerial*, message&);
+    bool recv(HardwareSerial*, ES::message&);
 }
+
 #endif // EXTENDEDSERIAL_H_INCLUDED
 
