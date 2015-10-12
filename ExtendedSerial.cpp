@@ -44,6 +44,13 @@ void ES::waitForContact(HardwareSerial* _Serial, unsigned int delayms, unsigned 
 *
 * The function expects ASCII data, incoming raw data will
 * be treated as garbage data.
+* 
+* Incoming message MUST conform to the following format:
+*   size of the data part of the message
+*   one whitespace character
+*   the data of the message
+*   one null character
+* 
 */
 bool ES::recv(HardwareSerial* _Serial, message& output) {
     char in[1];
